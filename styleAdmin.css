@@ -1,0 +1,21 @@
+html, body {
+    height: 100%; /* Pastikan dokumen memiliki tinggi penuh */
+    margin: 0;
+}
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum tinggi kontainer sesuai dengan viewport */
+}
+
+main {
+    flex: 1; /* Bagian utama mendorong footer ke bawah */
+}
+
+footer {
+    background-color: #000; /* Warna latar belakang footer */
+    color: #fff; /* Warna teks footer */
+    text-align: center;
+    padding: 10px;
+}
