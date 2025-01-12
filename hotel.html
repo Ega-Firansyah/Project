@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan Kamar</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center">Form Pemesanan Kamar</h1>
+    <form id="bookingForm">
+        <div class="mb-3">
+            <label for="namaPemesan" class="form-label">Nama Pemesan</label>
+            <input type="text" class="form-control" id="namaPemesan" placeholder="Masukkan nama Anda" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
+            <select class="form-select" id="jenisKelamin" required>
+                <option value="">Pilih</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="nomorIdentitas" class="form-label">Nomor Identitas</label>
+            <input type="text" class="form-control" id="nomorIdentitas" maxlength="16" pattern="\d{16}" placeholder="Masukkan 16 digit nomor identitas" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="tipeKamar" class="form-label">Tipe Kamar</label>
+            <select class="form-select" id="tipeKamar" onchange="updateHarga()" required>
+                <option value="">Pilih</option>
+                <option value="Standard">Standard</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Family">Family</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="harga" class="form-label">Harga</label>
+            <input type="text" class="form-control" id="harga" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="tanggalPesan" class="form-label">Tanggal Pesan</label>
+            <input type="date" class="form-control" id="tanggalPesan" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="durasiMenginap" class="form-label">Durasi Menginap (hari)</label>
+            <input type="number" class="form-control" id="durasiMenginap" min="1" oninput="hitungTotalBayar()" required>
+        </div>
+
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="includeBreakfast" onchange="hitungTotalBayar()">
+                <label class="form-check-label" for="includeBreakfast">Termasuk Breakfast (Tambah Rp 80,000)</label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="totalBayar" class="form-label">Total Bayar</label>
+            <input type="text" class="form-control" id="totalBayar" readonly>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="reset" class="btn btn-secondary">Batal</button>
+    </form>
+</div>
+
+<footer>
+    &copy; 2024 BEST HOTEL
+</footer>
+
+<script>
+    const hargaKamar = {
+        "Standard": 500000,
+        "Deluxe": 750000,
+        "Family": 1000000
+    };
+
+    function updateHarga() {
+        const tipeKamar = document.getElementById('tipeKamar').value;
+        const harga = hargaKamar[tipeKamar] || 0;
+        document.getElementById('harga').value = harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+        hitungTotalBayar();
+    }
+
+    function hitungTotalBayar() {
+        const tipeKamar = document.getElementById('tipeKamar').value;
+        const durasiMenginap = parseInt(document.getElementById('durasiMenginap').value) || 0;
+        const includeBreakfast = document.getElementById('includeBreakfast').checked;
+
+        let total = (hargaKamar[tipeKamar] || 0) * durasiMenginap;
+
+        if (durasiMenginap > 3) {
+            total *= 0.9; // Diskon 10%
+        }
+
+        if (includeBreakfast) {
+            total += 80000 * durasiMenginap;
+        }
+
+        document.getElementById('totalBayar').value = total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Pemesanan berhasil disimpan!');
+        this.reset();
+        document.getElementById('harga').value = '';
+        document.getElementById('totalBayar').value = '';
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2 class="text-center mb-4">Login</h2>
+        <form onsubmit="return validateLogin(event)">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Masukan Username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Masukan Password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <p class="mb-1">Jika Belum Mempunyai Akun klik <a href="#">Register</a></p>
+            <a href="#">Lupa Password?</a>
+        </div>
+    </div>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Mencegah form submit default
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'admin' && password === '123') {
+                alert('Login Sukses');
+                window.location.href = 'formAdmin.html'; // Arahkan ke index.html
+            } else {
+                alert('Login Gagal. Coba lagi!');
+                window.location.href = 'test.html'; // Tetap di halaman login
+            }
+        }
+    </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
