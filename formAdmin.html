@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styleAdmin.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<div id="main-container">
+    <body>
+        <!-- Header -->
+        <header class="bg-black text-white text-center py-3">
+            <h1><img src="gambar/Logo.png" style="width: 150px; height: 150px;"></h1>
+        </header>
+        <main>
+            <div class="container mt-4">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary me-md-2" onclick="logout()">Logout</button>
+                </div>
+                <!-- Tabs Navigation -->
+                <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="room-tab" 
+                        data-bs-toggle="tab" data-bs-target="#room" type="button" role="tab" 
+                        aria-controls="room" aria-selected="true">Manage Ruangan</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="facility-tab" data-bs-toggle="tab" 
+                        data-bs-target="#facility" type="button" role="tab" aria-controls="facility"
+                        aria-selected="false">Manage Fasilitas</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="booking-tab" data-bs-toggle="tab"
+                        data-bs-target="#booking" type="button" role="tab" aria-controls="booking"
+                        aria-selected="false">Daftar Booking</button>
+                    </li> 
+                </ul>
+
+                <div class="tab-content" id="adminTabsContent">
+                    <!-- Manage Rooms -->
+                    <div class="tab-pane fade show active" id="room" role="tabpanel" aria-labelledby="room-tab">
+                        <h2 class="mt-4">Manage Tipe Ruangan</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="roomName" class="form-label">Nama Ruangan</label>
+                                <input type="text" class="form-control" id="roomName" 
+                                placeholder="Masukan Nama Ruangan">
+                            </div>
+                            <div class="mb-3">
+                                <label for="roomPrice" class="form-label">Harga Per Malam</label>
+                                <input type="number" class="form-control" id="roomPrice" 
+                                placeholder="Masukan Harga">
+                            </div>
+                            <div class="mb-3">
+                                <label for="roomDescription" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="roomDescription" rows="3" 
+                                placeholder="Masukan Deskripsi Ruangan"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Simpan Ruangan</button>
+                        </form>
+                    </div>
+
+                    <!-- Manage Facilities -->
+                    <div class="tab-pane fade" id="facility" role="tabpanel" aria-labelledby="facility-tab">
+                        <h2 class="mt-4">Manage Fasilitas</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="facilityName" class="form-label">Nama Fasilitas</label>
+                                <input type="text" class="form-control" id="facilityName" 
+                                placeholder="Masukan Nama Fasilitas">
+                            </div>
+                            <div class="mb-3">
+                                <label for="facilityDescription" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="facilityDescription" rows="3" 
+                                placeholder="Masukan Deskripsi Fasilitas"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Simpan Fasilitas</button>
+                        </form>
+                    </div>
+
+                    <!-- View Bookings -->
+                    <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
+                        <h2 class="mt-4">Customer</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama Customer</th>
+                                    <th scope="col">Tipe Kamar</th>
+                                    <th scope="col">Tanggal Check-In</th>
+                                    <th scope="col">Tanggal Check-Out</th>
+                                    <th scope="col">Total Harga</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Andi</td>
+                                    <td>Deluxe</td>
+                                    <td>2024-01-10</td>
+                                    <td>2024-01-15</td>
+                                    <td>Rp. 1.500.000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Anda</td>
+                                    <td>Standard</td>
+                                    <td>2024-01-12</td>
+                                    <td>2024-01-14</td>
+                                    <td>Rp. 1.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-dark text-white text-center py-3 mt-4">
+            &copy; 2024 CIBIRU HOTEL
+        </footer>
+        <script>
+            function logout() {
+                window.location.href = "formLogin.html"; // Ganti dengan path file form login Anda
+            }
+        </script>
+    </body>
+</div>
+</html>
